@@ -22,42 +22,32 @@ class MyTodoApp extends StatelessWidget {
 }
 
 // リスト一覧画面用Widget
-class TodoListPage extends StatelessWidget {
+class TodoListPage extends StatefulWidget {
+  @override
+  _TodoListPageState createState() => _TodoListPageState();
+}
+
+class _TodoListPageState extends State<TodoListPage> {
+  // Todoリストのデータ
+  List<String> todoList = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // AppBarを表示し、タイトルも設定
       appBar: AppBar(
         title: Text('リスト一覧'),
       ),
-      // ListViewを使いリスト一覧を表示
-      body: ListView(
-        children: <Widget>[
-          Card(
+      // データを元にListViewを作成
+      body: ListView.builder(
+        itemCount: todoList.length,
+        itemBuilder: (context, index) {
+          return Card(
             child: ListTile(
-              title: Text('Aさんとのミーティングの準備をする'),
+              title: Text(todoList[index]),
             ),
-          ),
-          Card(
-            child: ListTile(
-              title: Text('Bさんに依頼されたイベントに出演する'),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: Text('Cさんとのミーティングの準備をする'),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: Text('Dさんにメールを返信する'),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: Text('Eさんにイベント企画書を送信する'),
-            ),
-          ),
-        ],
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
@@ -71,6 +61,10 @@ class TodoListPage extends StatelessWidget {
           );
           if (newListText != null) {
             // キャンセルした場合は newListText が null となるので注意
+            setState(() {
+              // リスト追加
+              todoList.add(newListText);
+            });
           }
         },
         child: Icon(Icons.add),
