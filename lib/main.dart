@@ -32,11 +32,31 @@ class TodoListPage extends StatelessWidget {
       // ListViewを使いリスト一覧を表示
       body: ListView(
         children: <Widget>[
-          Text('Aさんとのミーティングの準備をする'),
-          Text('Bさんに依頼されたイベントに出演する'),
-          Text('Cさんとのミーティングの準備をする'),
-          Text('Dさんにメールを返信する'),
-          Text('Eさんにイベント企画書を送信する')
+          Card(
+            child: ListTile(
+              title: Text('Aさんとのミーティングの準備をする'),
+            ),
+          ),
+          Card(
+            child: ListTile(
+              title: Text('Bさんに依頼されたイベントに出演する'),
+            ),
+          ),
+          Card(
+            child: ListTile(
+              title: Text('Cさんとのミーティングの準備をする'),
+            ),
+          ),
+          Card(
+            child: ListTile(
+              title: Text('Dさんにメールを返信する'),
+            ),
+          ),
+          Card(
+            child: ListTile(
+              title: Text('Eさんにイベント企画書を送信する'),
+            ),
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
